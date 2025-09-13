@@ -80,7 +80,7 @@ module.exports.initiate_c2b = async function (amount, msisdn, transaction_ref, t
         });
         return response.data;
     } catch (e) {
-        if (e.response.data) {
+        if (e.response && e.response.data) {
             throw e.response.data;
         } else {
             throw e;
@@ -110,7 +110,7 @@ module.exports.initiate_b2c = async function (amount, msisdn, transaction_ref, t
         });
         return response.data;
     } catch (e) {
-        if (e.response.data) {
+        if (e.response && e.response.data) {
             throw e.response.data;
         } else {
             throw e;
