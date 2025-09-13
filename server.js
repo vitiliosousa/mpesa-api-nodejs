@@ -2,8 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const mpesa = require('./index'); // importa seu index.js
 const bodyParser = require('body-parser');
+const cors = require("cors")
 
 const app = express();
+app.use(cors())
 app.use(bodyParser.json());
 
 // Endpoint C2B
@@ -11,6 +13,9 @@ app.post('/c2b', async (req, res) => {
   const { amount, msisdn, transaction_ref, thirdparty_ref } = req.body;
   try {
     const result = await mpesa.initiate_c2b(amount, msisdn, transaction_ref, thirdparty_ref);
+
+    
+
     res.json(result);
   } catch (error) {
     res.status(500).json({ error });
